@@ -1,0 +1,16 @@
+#Cart{
+    font-size: 2.5rem;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    .photo{
+        border: 2px ridge black;
+    }
+    .trash{
+        cursor: pointer;
+    }
+    .checkout{
+        border: 1px solid black;
+
+    }
+}
