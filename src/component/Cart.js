@@ -6,22 +6,23 @@ import { removeFromCart } from '../redux/actions/actions';
 const Cart = () => {
 
     const cart_item=useSelector(state=>[...new Set(state.CartReducer.cart)])
-    console.log(cart_item);
     const dispatch=useDispatch();
 
     const [gettotal,setgetTotal]=useState(0)
     
 
+    
     useEffect(()=>{
-        const total = () => {
-            let price = 0
+        const total =() => {
+            let price = 0;
             cart_item.map((e) => {
-                return price = price + e.price
+                return price = e.price + price
             })
             setgetTotal(price)
         }
         total();
-    })
+
+    },[cart_item])
 
 
   return (
@@ -38,29 +39,29 @@ const Cart = () => {
                   <div className="d-flex justify-content-between align-items-center mb-3">
                       <h1>Total:₹{gettotal}</h1>
                       
-                      <button type="button" class="btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <button type="button" className="btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           CheckOut
                       </button>
 
                       
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h5 class="modal-title display-6" id="exampleModalLabel">Total:₹{gettotal}</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div className="modal-dialog">
+                              <div className="modal-content">
+                                  <div className="modal-header">
+                                      <h5 className="modal-title display-6" id="exampleModalLabel">Total:₹{gettotal}</h5>
+                                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
-                                  <div class="modal-body">
+                                  <div className="modal-body">
                                       {
                                           cart_item.map((e,i)=>{
-                                              return <ul className='list-unstyled'>
+                                              return <ul className='list-unstyled' key={e.id}>
                                                   <li>{i+1}) {e.title}</li>
                                               </ul>
                                           })
                                       }
                                   </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn-lg btn-secondary"  data-bs-dismiss="modal">Proceed</button>
+                                  <div className="modal-footer">
+                                      <button type="button" className="btn-lg btn-secondary"  data-bs-dismiss="modal">Proceed</button>
                                   </div>
                               </div>
                           </div>
